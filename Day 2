@@ -1001,6 +1001,8 @@ let raw = `7-9 l: vslmtglbc
 let parsedData = raw.split("\n")
 let masterCount = 0
 
+// Part 1
+
 for (let attempt in parsedData) {
   let string = parsedData[attempt]
   let key = string.split(' ')
@@ -1013,6 +1015,25 @@ for (let attempt in parsedData) {
     if (password[char] === letter) count ++
   }
   if (count >= min && count <= max) {
+    masterCount ++
+  }
+}
+console.log(`There ${masterCount > 1 ? "are" : "is"} ${masterCount} success${masterCount > 1 ? "es" : ""}`)
+
+
+// Part 2 
+
+for (let attempt in parsedData) {
+  let string = parsedData[attempt]
+  let key = string.split(' ')
+  let firstIndex = Number.parseInt(key[0].split("-")[0]) - 1
+  let secondIndex = Number.parseInt(key[0].split("-")[1]) - 1
+  let letter = key[1][0]
+  let password = key[2]
+  if (password[firstIndex] === letter && password[secondIndex] !== letter) {
+    masterCount ++
+  }
+  if (password[firstIndex] !== letter && password[secondIndex] === letter) {
     masterCount ++
   }
 }
