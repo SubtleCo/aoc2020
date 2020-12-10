@@ -1084,7 +1084,7 @@ function validate(passport) {
   if (!passport.hcl.match(/#([a-f]|[0-9]){6}/g)) return false;
   if (!["amb","blu","brn","gry","grn","hzl","oth"].includes(passport.ecl)) return false;
   if (passport.pid.toString().length !== 9) return false;
-  if (!passport.pid.match(/^[0-9]{9}$/)) return false;
+  if (!passport.pid.match(/^[0-9]{9}\b/)) return false;
   return true;
 }
 
